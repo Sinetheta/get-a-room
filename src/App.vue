@@ -2,16 +2,19 @@
   <div id="app">
     <img src="./assets/logo.png">
     <hello></hello>
+    <calendar-authorize></calendar-authorize>
   </div>
 </template>
 
 <script>
 import Hello from './components/Hello';
+import CalendarAuthorize from './components/calendar/authorize';
 
 export default {
   name: 'app',
   components: {
-    Hello
+    Hello,
+    CalendarAuthorize
   }
 };
 </script>
