@@ -1,4 +1,5 @@
-const GAPI_TIMEOUT = 10000;
+import * as env from 'env';
+
 var loadGapi = function () {
   var script = document.createElement('script');
   script.src = 'https://apis.google.com/js/client.js?onload=gapiLoaded';
@@ -11,7 +12,7 @@ var promise = new Promise(function (resolve, reject) {
   loadGapi();
   window.setTimeout(function () {
     reject('Google Calendar Api timed out.');
-  }, GAPI_TIMEOUT);
+  }, env.gapi.GAPI_TIMEOUT);
 });
 
 export function getApi () {

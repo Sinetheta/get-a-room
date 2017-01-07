@@ -6,9 +6,8 @@
 </template>
 
 <script>
+import * as env from 'env';
 import {getApi} from './get_gapi';
-const CLIENT_ID = '536070888634-fqg7o8o54291i1u1gefk4677lkor701c.apps.googleusercontent.com';
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 
 export default {
   name: 'CalendarAuthorize',
@@ -16,8 +15,8 @@ export default {
     authorize: function () {
       getApi().then(function (gapi) {
         gapi.auth.authorize({
-          client_id: CLIENT_ID,
-          scope: SCOPES,
+          client_id: env.gapi.CLIENT_ID,
+          scope: env.gapi.SCOPES,
           immediate: false
         });
       });
