@@ -1,20 +1,19 @@
 <template>
   <div id="app">
-    <calendar-authorize></calendar-authorize>
+    <topnav></topnav>
+    <router></router>
   </div>
 </template>
 
 <script>
-import CalendarAuthorize from './components/calendar/authorize';
+import Topnav from './components/topnav';
+import Router from './components/router';
 
 export default {
   name: 'app',
   components: {
-    CalendarAuthorize
+    Topnav,
+    Router
   }
 };
 </script>
-
-<style>
-
-</style>

@@ -3,9 +3,17 @@
 import Vue from 'vue';
 import App from './App';
 
-/* eslint-disable no-new */
-new Vue({
+const app = new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App }
+  components: { App },
+  data: function () {
+    return {
+      currentRoute: window.location.pathname
+    };
+  }
+});
+
+window.addEventListener('popstate', () => {
+  app.currentRoute = window.location.pathname;
 });
