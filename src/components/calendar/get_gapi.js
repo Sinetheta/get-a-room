@@ -17,5 +17,12 @@ var promise = new Promise(function (resolve, reject) {
 var getApi = function () {
   return promise;
 };
+var authorize = function () {
+  return gapi.auth.authorize({
+    client_id: env.gapi.CLIENT_ID,
+    scope: env.gapi.SCOPES,
+    immediate: false
+  });
+};
 
-export { getApi, gapi };
+export { getApi, gapi, authorize };

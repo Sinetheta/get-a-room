@@ -1,25 +1,20 @@
 <template>
   <div class="authorize">
     Authorize access to Google Calendar API
-    <button v-on:click="authorize">Authorize</button>
+    <button v-on:click="init">Authorize</button>
   </div>
 </template>
 
 <script>
-import * as env from 'env';
-import {getApi} from './get_gapi';
+import { getApi, authorize } from './get_gapi';
 
 export default {
   name: 'CalendarAuthorize',
   methods: {
-    authorize: function () {
-      getApi().then(function (gapi) {
-        gapi.auth.authorize({
-          client_id: env.gapi.CLIENT_ID,
-          scope: env.gapi.SCOPES,
-          immediate: false
+    init: function () {
+      getApi()
+        .then(authorize)
         });
-      });
     }
   }
 };
