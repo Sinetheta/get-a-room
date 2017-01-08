@@ -7,8 +7,7 @@
 
 <script>
 import { getApi, authorize } from './get_gapi';
-import { loadCalendarApi } from './calendars';
-import { listTodaysEvents } from './events';
+import { loadCalendarApi } from './list';
 
 var alertSuccess = function () {
   window.alert('Authorization Success!');
@@ -26,9 +25,8 @@ export default {
         .then(authorize)
         .then(alertSuccess, alertError)
         .then(loadCalendarApi)
-        .then(listTodaysEvents)
-        .then(function (resp) {
-          console.log({events: resp.result.items});
+        .then(() => {
+          this.$emit('load');
         });
     }
   }

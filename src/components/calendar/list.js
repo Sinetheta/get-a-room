@@ -4,4 +4,8 @@ var loadCalendarApi = function () {
   return gapi.client.load('calendar', 'v3');
 };
 
-export { loadCalendarApi };
+var getList = function () {
+  return gapi.client.calendar.calendarList.list();
+};
+
+export { loadCalendarApi, getList };
