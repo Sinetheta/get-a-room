@@ -7,6 +7,7 @@
 
 <script>
 import { getApi, authorize } from './get_gapi';
+import { loadCalendarApi } from './calendars';
 
 var alertSuccess = function () {
   window.alert('Authorization Success!');
@@ -23,6 +24,7 @@ export default {
       getApi()
         .then(authorize)
         .then(alertSuccess, alertError)
+        .then(loadCalendarApi)
         });
     }
   }
