@@ -1,16 +1,11 @@
 <template>
   <div id="home">
-    <calendar-authorize></calendar-authorize>
+    Choose a <a href="/calendars">calendar</a> to get started.
   </div>
 </template>
 
 <script>
-import CalendarAuthorize from '../components/calendar/authorize';
-
 export default {
-  name: 'Home',
-  components: {
-    CalendarAuthorize
-  }
+  name: 'Home'
 };
 </script>
