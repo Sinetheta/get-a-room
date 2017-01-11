@@ -7,19 +7,14 @@
 
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
         for="menu-toggle">
-      <li class="mdl-menu__item"><v-link href="/calendars">Calendars</v-link></li>
+      <li class="mdl-menu__item"><router-link to="calendars">Calendars</router-link></li>
     </ul>
   </div>
 </template>
 
 <script>
-import VLink from './VLink.vue';
-
 export default {
-  name: 'Topnav',
-  components: {
-    VLink
-  }
+  name: 'Topnav'
 };
 </script>
 

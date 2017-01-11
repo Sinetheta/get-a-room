@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    Choose a <a href="/calendars">calendar</a> to get started.
+    Choose a <router-link to="calendars">calendar</router-link> to get started.
   </div>
 </template>
 
