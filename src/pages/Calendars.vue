@@ -3,7 +3,7 @@
     <calendar-authorize v-show="calendars.length === 0" v-on:load="loadCalendars"></calendar-authorize>
     <ul>
       <li v-for="calendar in calendars">
-        {{ calendar.summary }}
+        <router-link :to="{name: 'calendars', params: { id: calendar.id }}">{{ calendar.summary }}</router-link>
       </li>
     </ul>
   </div>
