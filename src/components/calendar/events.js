@@ -1,13 +1,15 @@
-import { gapi } from './get_gapi';
+import { getCapi } from './get_capi';
 
 var listUpcomingEvents = function (calendarId, from, to) {
-  return gapi.client.calendar.events.list({
-    'calendarId': calendarId,
-    'timeMin': from.toISOString(),
-    'timeMax': to.toISOString(),
-    'showDeleted': false,
-    'singleEvents': true,
-    'orderBy': 'startTime'
+  return getCapi().then(function (calendar) {
+    return calendar.events.list({
+      'calendarId': calendarId,
+      'timeMin': from.toISOString(),
+      'timeMax': to.toISOString(),
+      'showDeleted': false,
+      'singleEvents': true,
+      'orderBy': 'startTime'
+    });
   });
 };
 

@@ -1,11 +1,10 @@
-import { gapi } from './get_gapi';
-
-var loadCalendarApi = function () {
-  return gapi.client.load('calendar', 'v3');
-};
+import { getCapi } from './get_capi';
 
 var getList = function () {
-  return gapi.client.calendar.calendarList.list();
+  return getCapi()
+    .then(function (calendar) {
+      return calendar.calendarList.list();
+    });
 };
 
-export { loadCalendarApi, getList };
+export { getList };
