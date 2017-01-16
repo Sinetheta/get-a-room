@@ -60,10 +60,6 @@ body,
   height: 100%;
 }
 
-#day {
-  width: 50%;
-}
-
 .fc-header-toolbar,
 .fc-head {
   display: none;
