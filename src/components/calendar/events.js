@@ -21,4 +21,21 @@ var listTodaysEvents = function (calendarId) {
   return listUpcomingEvents(calendarId, midnight, tomoro);
 };
 
-export { listTodaysEvents };
+var insertEvent = function (calendarId, from, to) {
+  return getCapi().then(function (calendar) {
+    return calendar.events.insert({
+      'calendarId': calendarId,
+      'resource': {
+        'summary': 'In Person Booking',
+        'start': {
+          'dateTime': from.toISOString()
+        },
+        'end': {
+          'dateTime': to.toISOString()
+        }
+      }
+    });
+  });
+};
+
+export { insertEvent, listTodaysEvents };

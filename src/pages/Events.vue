@@ -10,6 +10,7 @@
       <template v-else>
         <h3>Room Available</h3>
       </template>
+      <create-button :calendar-id="calendarId" v-on:insert="loadEvents"></create-button>
     </div>
   </div>
 </template>
@@ -17,11 +18,13 @@
 <script>
 import moment from 'moment';
 import { listTodaysEvents } from '../components/calendar/events';
+import CreateButton from '../components/calendar/CreateButton';
 import Day from '../components/calendar/Day';
 
 export default {
   name: 'Events',
   components: {
+    CreateButton,
     Day
   },
   data: function () {
