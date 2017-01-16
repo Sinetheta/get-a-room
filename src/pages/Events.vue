@@ -1,6 +1,6 @@
 <template>
   <div id="events">
-    <day :calendar-id="calendarId"></day>
+    <day :calendar-id="calendarId" :events="events"></day>
     <div class="controls">
       <template v-if="eventRightNow()">
         <h3>Room Busy</h3>
@@ -34,11 +34,14 @@ export default {
     };
   },
   created: function () {
-    listTodaysEvents(this.calendarId).then((resp) => {
-      this.events = resp.result.items;
-    });
+    this.loadEvents();
   },
   methods: {
+    loadEvents: function () {
+      listTodaysEvents(this.calendarId).then((resp) => {
+        this.events = resp.result.items;
+      });
+    },
     eventRightNow: function () {
       return this.events.find(function (gcalEvent) {
         return moment().isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime);

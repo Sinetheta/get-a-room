@@ -7,7 +7,6 @@
 import moment from 'moment';
 import 'fullcalendar';
 import 'fullcalendar/dist/gcal';
-import { listTodaysEvents } from './events';
 
 // The header hidden by CSS is not allowing for full "parent" height
 var fullCalHeight = function () {
@@ -24,11 +23,11 @@ var fullCalEvent = function (gcalEvent) {
 
 export default {
   name: 'Day',
-  props: ['calendarId'],
-  data: function () {
-    return {
-      events: []
-    };
+  props: ['calendarId', 'events'],
+  methods: {
+    fullCalEvents: function (start, end, timezone, callback) {
+      callback(this.events.map(fullCalEvent));
+    }
   },
   mounted: function () {
     $('#day').fullCalendar({
@@ -41,13 +40,14 @@ export default {
         center: '',
         right: ''
       },
-      events: (start, end, timezone, callback) => {
-        listTodaysEvents(this.calendarId).then((resp) => {
-          this.events = resp.result.items;
-          callback(resp.result.items.map(fullCalEvent));
-        });
-      }
+      events: this.fullCalEvents
     });
+  },
+  watch: {
+    events: function () {
+      console.log('watch');
+      $('#day').fullCalendar('refetchEvents');
+    }
   }
 };
 </script>

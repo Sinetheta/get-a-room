@@ -13,7 +13,9 @@ export default {
     insertEvent: function () {
       var from = moment();
       var to = moment().add(30, 'minutes');
-      insertEvent(this.calendarId, from, to);
+      insertEvent(this.calendarId, from, to).then(() => {
+        this.$emit('insert');
+      });
     }
   }
 };
