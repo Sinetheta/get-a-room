@@ -7,10 +7,7 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-});
+const router = new VueRouter({ routes });
 
 /* eslint-disable no-new */
 new Vue({
