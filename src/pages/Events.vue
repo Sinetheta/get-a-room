@@ -5,6 +5,7 @@
       <template v-if="eventRightNow()">
         <h3>Room Busy</h3>
         <p>{{eventRightNow().summary}} in progress</p>
+        <p>Next available {{nextAvailability().fromNow()}}</p>
       </template>
       <template v-else>
         <h3>Room Available</h3>
@@ -39,6 +40,15 @@ export default {
       return this.events.find(function (gcalEvent) {
         return moment().isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime);
       });
+    },
+    nextAvailability: function () {
+      return this.events.reduce(function (freeTime, gcalEvent) {
+        if (freeTime.isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime, null, '[]')) {
+          return moment(gcalEvent.end.dateTime);
+        } else {
+          return freeTime;
+        }
+      }, moment());
     }
   }
 };
