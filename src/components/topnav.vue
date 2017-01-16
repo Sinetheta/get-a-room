@@ -7,7 +7,7 @@
 
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
         for="menu-toggle">
-      <li class="mdl-menu__item"><router-link to="calendars">Calendars</router-link></li>
+      <li class="mdl-menu__item"><router-link to="/calendars">Calendars</router-link></li>
     </ul>
   </div>
 </template>
