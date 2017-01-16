@@ -1,29 +1,28 @@
 <template>
   <div id="events">
-    <h1>Events</h1>
-    <ul>
-      <li v-for="event in events">
-        {{event}}
-      </li>
-    </ul>
+    <day :calendar-id="calendarId"></day>
   </div>
 </template>
 
 <script>
-import { listTodaysEvents } from '../components/calendar/events';
+import Day from '../components/calendar/Day';
 
 export default {
   name: 'Events',
+  components: {
+    Day
+  },
   data: function () {
     return {
       calendarId: this.$route.params.id,
       events: []
     };
-  },
-  created: function () {
-    listTodaysEvents(this.$route.params.id).then((resp) => {
-      this.events = resp.result.items;
-    });
   }
 };
 </script>
+
+<style>
+#day {
+  width: 50%;
+}
+</style>
