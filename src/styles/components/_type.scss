@@ -1,0 +1,13 @@
+$body-font: 'Lato', sans-serif;
+$headings-font: 'Raleway', sans-serif;
+
+html {
+  font-family: $body-font;
+  font-size: $font-size-base;
+}
+
+h1,
+h2,
+h3 {
+  font-family: $headings-font;
+}
