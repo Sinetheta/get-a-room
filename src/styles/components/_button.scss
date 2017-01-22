@@ -1,6 +1,7 @@
 .button,
 button {
   @include colored-button;
+  @include transition(all 250ms);
   display: inline-block;
   vertical-align: middle;
   padding: 0.8em 1.5em;
@@ -11,9 +12,16 @@ button {
   line-height: 1.1875; // 19px
   text-transform: uppercase;
   text-align: center;
+  box-shadow: $box-shadow;
+  cursor: pointer;
 
   &:active {
     outline: none; // we already provide a color change
+    box-shadow: none;
+  }
+
+  &.flat {
+    box-shadow: none;
   }
 }
 

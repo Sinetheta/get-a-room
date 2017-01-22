@@ -3,7 +3,7 @@
     <day :calendar-id="calendarId" :events="events"></day>
     <div class="controls">
       <template v-if="eventRightNow()">
-        <h3>Room Busy</h3>
+        <h1>Room Busy</h1>
         <p>{{eventRightNow().summary}} in progress</p>
         <p>Next available {{nextAvailability().fromNow()}}</p>
       </template>

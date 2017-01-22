@@ -1,0 +1,39 @@
+body.modal-shown .create-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsla(0, 0%, 0%, 0.8);
+  z-index: 1;
+}
+
+.modal {
+  padding: 2rem;
+  background: $color-primary;
+  color: white;
+}
+
+.modal button {
+  color: white;
+}
+
+.modal-event-details {
+  font-size: 2em;
+}
+
+.modal-event-controls {
+  text-align: right;
+  margin: 2rem 0;
+}
+
+.modal-event-controls button + button {
+  margin-left: 2rem;
+}
+
+.modal-controls {
+  text-align: right;
+}
