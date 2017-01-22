@@ -1,0 +1,61 @@
+.fc-header-toolbar,
+.fc-head {
+  display: none;
+}
+
+.fc-time-grid .fc-slats .fc-minor td {
+  border-top-style: none;
+}
+
+.fc-unthemed {
+  .fc-content,
+  .fc-divider,
+  .fc-list-heading td,
+  .fc-list-view,
+  .fc-popover,
+  .fc-row,
+  tbody,
+  td,
+  th,
+  thead {
+    border-color: white;
+  }
+
+  .fc-widget-content {
+    border-color: $grey-lightest;
+  }
+
+  .fc-axis.fc-widget-content {
+    border-top-color: white;
+    border-bottom-color: white;
+  }
+
+  td.fc-today {
+    background: none;
+  }
+
+  .fc-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.fc-ltr .fc-axis {
+  color: $grey-light;
+  text-align: center;
+}
+
+.fc-event,
+.fc-event-dot {
+  background-color: $color-secondary;
+  border-color: $color-secondary;
+}
+
+.fc-event {
+  .fc-bg {
+    opacity: 0;
+  }
+}

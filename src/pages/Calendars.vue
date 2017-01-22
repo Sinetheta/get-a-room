@@ -1,5 +1,6 @@
 <template>
   <div id="calendars">
+    <h1>My Calendars</h1>
     <ul>
       <li v-for="calendar in calendars">
         <router-link :to="{name: 'calendars', params: { id: calendar.id }}">{{ calendar.summary }}</router-link>
