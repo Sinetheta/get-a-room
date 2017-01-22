@@ -25,7 +25,10 @@ import { insertEvent } from './events';
 
 export default {
   name: 'CreateButton',
-  props: ['calendarId'],
+  props: [
+    'calendarId',
+    'createAt'
+  ],
   data: function () {
     return {
       modalShown: false,
@@ -44,8 +47,8 @@ export default {
       });
     },
     showModal: function () {
-      this.newEvent.startTime.floor(15, 'minutes');
-      this.newEvent.endTime.floor(15, 'minutes');
+      this.newEvent.startTime = moment(this.createAt).floor(15, 'minutes');
+      this.newEvent.endTime = moment(this.newEvent.startTime).add(15, 'minutes');
       this.modalShown = true;
       document.body.classList.add('modal-shown');
     },

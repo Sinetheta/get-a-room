@@ -5,12 +5,12 @@
       <template v-if="eventRightNow()">
         <h1>Room Busy</h1>
         <p>{{eventRightNow().summary}} in progress</p>
-        <p>Next available {{nextAvailability().fromNow()}}</p>
+        <p>Next available {{nextAvailabile.fromNow()}}</p>
       </template>
       <template v-else>
         <h3>Room Available</h3>
       </template>
-      <create-button :calendar-id="calendarId" v-on:insert="loadEvents"></create-button>
+      <create-button :calendar-id="calendarId" :create-at="nextAvailabile" v-on:insert="loadEvents"></create-button>
     </div>
   </div>
 </template>
@@ -33,6 +33,17 @@ export default {
       events: []
     };
   },
+  computed: {
+    nextAvailabile: function () {
+      return this.events.reduce(function (freeTime, gcalEvent) {
+        if (freeTime.isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime, null, '[]')) {
+          return moment(gcalEvent.end.dateTime);
+        } else {
+          return freeTime;
+        }
+      }, moment());
+    }
+  },
   created: function () {
     this.loadEvents();
   },
@@ -46,15 +57,6 @@ export default {
       return this.events.find(function (gcalEvent) {
         return moment().isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime);
       });
-    },
-    nextAvailability: function () {
-      return this.events.reduce(function (freeTime, gcalEvent) {
-        if (freeTime.isBetween(gcalEvent.start.dateTime, gcalEvent.end.dateTime, null, '[]')) {
-          return moment(gcalEvent.end.dateTime);
-        } else {
-          return freeTime;
-        }
-      }, moment());
     }
   }
 };
