@@ -1,0 +1,13 @@
+.icon {
+  @include size(1em);
+  display: inline-block;
+  background-size: 100%;
+
+  &-settings {
+    background-image: url('~/static/ic_settings_black_24px.svg');
+
+    &.muted {
+      background-image: url('~/static/ic_settings_grey_24px.svg');
+    }
+  }
+}

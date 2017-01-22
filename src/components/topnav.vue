@@ -1,14 +1,6 @@
 <template>
   <div class="topnav">
-    <button id="menu-toggle"
-        class="mdl-button mdl-js-button mdl-button--icon">
-      <i class="material-icons">more_vert</i>
-    </button>
-
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-        for="menu-toggle">
-      <li class="mdl-menu__item"><router-link to="/calendars">Calendars</router-link></li>
-    </ul>
+    <router-link to="/calendars"><span class="icon icon-settings muted"></span></router-link>
   </div>
 </template>
 
@@ -18,8 +10,15 @@ export default {
 };
 </script>
 
-<style scoped>
-#menu-toggle {
-  float: right;
+<style lang="scss" scoped>
+.topnav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.5em;
+
+  a:not(:hover) {
+    opacity: 0.7;
+  }
 }
 </style>
