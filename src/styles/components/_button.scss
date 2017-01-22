@@ -1,0 +1,41 @@
+.button,
+button {
+  @include colored-button;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0.8em 1.5em;
+  border: 1px solid $color-link;
+  background: none;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.1875; // 19px
+  text-transform: uppercase;
+  text-align: center;
+
+  &:active {
+    outline: none; // we already provide a color change
+  }
+}
+
+.button-inverse {
+  @include inverse-button($color-bg: $color-link);
+}
+
+.button-secondary.button-inverse {
+  @include inverse-button($color-bg: $color-secondary);
+}
+
+.button-transparent {
+  border: none;
+  text-transform: none;
+  letter-spacing: 0;
+
+  &:hover,
+  &:active {
+    background: none;
+  }
+}
+
+.button-large {
+  font-size: 1.5rem;
+}

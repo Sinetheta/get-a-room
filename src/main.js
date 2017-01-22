@@ -5,6 +5,8 @@ import routes from './routes';
 import App from './App';
 import VueRouter from 'vue-router';
 
+import './styles/main.scss';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({ routes });
