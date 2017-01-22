@@ -10,16 +10,17 @@
       <template v-else>
         <h3>Room Available</h3>
       </template>
-      <create-button :calendar-id="calendarId" :create-at="nextAvailabile" v-on:insert="loadEvents"></create-button>
+      <create-button :create-at="nextAvailabile" v-on:create="createEvent"></create-button>
     </div>
   </div>
 </template>
 
 <script>
 import moment from 'moment';
-import { listTodaysEvents } from '../components/calendar/events';
+import { insertEvent, listTodaysEvents } from '../components/calendar/events';
 import CreateButton from '../components/calendar/CreateButton';
 import Day from '../components/calendar/Day';
+// import { insertEvent } from './events';
 
 export default {
   name: 'Events',
@@ -48,6 +49,12 @@ export default {
     this.loadEvents();
   },
   methods: {
+    createEvent: function ({from, to}) {
+      insertEvent(this.calendarId, from, to).then(() => {
+        console.log({arguments});
+        this.loadEvents();
+      });
+    },
     loadEvents: function () {
       listTodaysEvents(this.calendarId).then((resp) => {
         this.events = resp.result.items;

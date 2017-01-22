@@ -10,7 +10,7 @@
         </div>
         <div class="modal-controls">
           <button class="button flat" v-on:click="hideModal()">cancel</button>
-          <button class="button flat">book now</button>
+          <button class="button flat" v-on:click="hideModal(); createEvent()">book now</button>
         </div>
       </div>
     </div>
@@ -21,12 +21,10 @@
 import moment from 'moment';
 import { monkey } from 'moment-round';
 monkey(moment);
-import { insertEvent } from './events';
 
 export default {
   name: 'CreateButton',
   props: [
-    'calendarId',
     'createAt'
   ],
   data: function () {
@@ -39,12 +37,10 @@ export default {
     };
   },
   methods: {
-    insertEvent: function () {
+    createEvent: function () {
       var from = moment();
       var to = moment().add(30, 'minutes');
-      insertEvent(this.calendarId, from, to).then(() => {
-        this.$emit('insert');
-      });
+      this.$emit('create', {from, to});
     },
     showModal: function () {
       this.newEvent.startTime = moment(this.createAt).floor(15, 'minutes');
