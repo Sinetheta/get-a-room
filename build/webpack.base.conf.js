@@ -99,6 +99,9 @@ module.exports = {
       })
     ]
   },
+  sassLoader: {
+    includePaths: [require('bourbon').includePaths]
+  },
   plugins: [
     new webpack.ProvidePlugin({
       $: "jquery",
