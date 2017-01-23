@@ -3,10 +3,10 @@
     <button class="button button-inverse button-large" v-show="!modalShown" v-on:click="showModal()">Book Room</button>
     <div class="modal-mask" v-show="modalShown">
       <div class="modal">
-        <div class="modal-event-details">{{newEvent.startTime.format('h:mm')}} - {{newEvent.endTime.format('h:mm')}}</div>
+        <div class="modal-event-details">{{time(newEvent.startTime)}} - {{time(newEvent.endTime)}}</div>
         <div class="modal-event-controls">
-          <button class="button button-inverse button-secondary button-large">- 15</button>
-          <button class="button button-inverse button-secondary button-large">+ 15</button>
+          <button class="button button-inverse button-secondary button-large" v-on:click="addTime(-15)">- 15</button>
+          <button class="button button-inverse button-secondary button-large" v-on:click="addTime(15)">+ 15</button>
         </div>
         <div class="modal-controls">
           <button class="button flat" v-on:click="hideModal()">cancel</button>
@@ -31,26 +31,30 @@ export default {
     return {
       modalShown: false,
       newEvent: {
-        startTime: moment(),
-        endTime: moment().add(15, 'minutes')
+        startTime: new Date(),
+        endTime: moment().add(30, 'minutes').toDate()
       }
     };
   },
   methods: {
     createEvent: function () {
-      var from = moment();
-      var to = moment().add(30, 'minutes');
-      this.$emit('create', {from, to});
+      this.$emit('create', {from: this.newEvent.startTime, to: this.newEvent.endTime});
     },
     showModal: function () {
-      this.newEvent.startTime = moment(this.createAt).floor(15, 'minutes');
-      this.newEvent.endTime = moment(this.newEvent.startTime).add(15, 'minutes');
+      this.newEvent.startTime = moment(this.createAt).floor(15, 'minutes').toDate();
+      this.newEvent.endTime = moment(this.newEvent.startTime).add(30, 'minutes').toDate();
       this.modalShown = true;
       document.body.classList.add('modal-shown');
     },
     hideModal: function () {
       this.modalShown = false;
       document.body.classList.remove('modal-shown');
+    },
+    addTime: function (increment) {
+      this.newEvent.endTime = moment(this.newEvent.endTime).add(increment, 'minutes').toDate();
+    },
+    time: function (date) {
+      return moment(date).format('h:mm');
     }
   }
 };
