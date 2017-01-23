@@ -51,7 +51,10 @@ export default {
       document.body.classList.remove('modal-shown');
     },
     addTime: function (increment) {
-      this.newEvent.endTime = moment(this.newEvent.endTime).add(increment, 'minutes').toDate();
+      this.newEvent.endTime = moment.max(
+        moment(this.newEvent.startTime).add(15, 'minutes'),
+        moment(this.newEvent.endTime).add(increment, 'minutes')
+      ).toDate();
     },
     time: function (date) {
       return moment(date).format('h:mm');
