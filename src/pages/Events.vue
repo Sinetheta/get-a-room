@@ -16,11 +16,12 @@
 </template>
 
 <script>
+/* global $ */
 import moment from 'moment';
 import { insertEvent, listTodaysEvents } from '../components/calendar/events';
 import CreateButton from '../components/calendar/CreateButton';
 import Day from '../components/calendar/Day';
-// import { insertEvent } from './events';
+import '../components/visibility';
 
 export default {
   name: 'Events',
@@ -46,12 +47,15 @@ export default {
     }
   },
   created: function () {
+    $(document.body).on('change.visibility', this.onVisibility);
     this.loadEvents();
+  },
+  destroyed: function () {
+    $(document.body).off('change.visibility', this.onVisibility);
   },
   methods: {
     createEvent: function ({from, to}) {
       insertEvent(this.calendarId, from, to).then(() => {
-        console.log({arguments});
         this.loadEvents();
       });
     },
@@ -59,6 +63,9 @@ export default {
       listTodaysEvents(this.calendarId).then((resp) => {
         this.events = resp.result.items;
       });
+    },
+    onVisibility: function (e, isVisible) {
+      if (isVisible) this.loadEvents();
     },
     eventRightNow: function () {
       return this.events.find(function (gcalEvent) {
